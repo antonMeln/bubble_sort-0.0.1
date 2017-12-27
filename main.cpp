@@ -1,53 +1,31 @@
-#include <iostream>
-#include <sstream>
+#include<sstream>
+#include<iostream>
 using namespace std;
-
-bool read (int & n , int *mas )
-  {
+int n;
+int main()
+{
     string str;
-    getline(cin,str);
+    cin >> n;
+    cin.ignore(1, '\n');
+    getline(cin, str);
     istringstream stream(str);
-    bool f =true;
-      
-     for (int i= 0; i<n;i++){
-        if (!(stream >> mas[i])){
-          f = false; 
-          break;
-          
+    int *a = new int[n];
+    for (int i = 0; i < n; i++) {
+        if (!(stream >> a[i])) {
+            cout << "An error has occuried while reading input data.\n";
+            cin.get();
+            return 0;
         }
-     }
-    return f;
-    
-    
-  }
-  
-  int main ()
-  {
-    int *mas = new int;
-    int i,n,j;
-    
-    string str;
-    getline(cin,str);
-    istringstream stream(str);
-     
-     if (stream >> n) {
-       if (read(n,mas)) {
-          for (j = 0;j<n;j++){
-            for (i = 1;i < n;i++){  
-       
-                  if (mas[i]<mas[i-1]) 
-                    swap(mas[i-1],mas[i]);
- 
-            }
-            
-          }
-         
-         for (int i =0;i<n;i++)
-            cout << mas[i] << " ";
-       
+    }
+    for (int i=0;i<n;i++){
+            for (int j = 1; j < n; j++) {
+                    if (a[j] < a[j - 1]) {
+                        swap(a[j], a[j - 1]);
+                    }
+                }
         }
-        else cout << " An error has occured while reading input data.";
-     }
+    for (int i = 0; i < n; i++)
+        cout << a[i] << " ";
+    cin.get();
     return 0;
-      
-  }
+}
